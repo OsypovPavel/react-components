@@ -13,7 +13,6 @@ const globals = {
   "styled-components": "styled",
   "react-input-mask": "InputMask",
   "rc-slider/lib/Range": "Range",
-  "react-datepicker": "libDatePicker"
 };
 
 const plugins = [
