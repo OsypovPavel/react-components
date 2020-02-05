@@ -5,6 +5,7 @@ import resolve from "rollup-plugin-node-resolve";
 import localResolve from "rollup-plugin-local-resolve";
 import { terser } from "rollup-plugin-terser";
 import filesize from "rollup-plugin-filesize";
+import alias from '@rollup/plugin-alias';
 
 const globals = {
   react: "React",
@@ -25,11 +26,19 @@ const plugins = [
   localResolve(),
   commonjs(),
   filesize(),
-  terser()
+  terser(),
+  alias({
+    entries: {
+      '@assets': `${__dirname}/src/assets`,
+      '@components': `${__dirname}/src/components`,
+      '@shared': `${__dirname}/src/shared`,
+      '@icons': `${__dirname}/src/components/Icons`,
+    }
+  }),
 ];
 const compile = path => {
   return {
-    input: `src/${path}`,
+    input: `src/components/${path}`,
     output: [
       {
         file: `lib/${path}.js`,
@@ -49,7 +58,7 @@ const compile = path => {
 };
 
 const components = [
-  "AutoComplete",
+  // "AutoComplete",
   "Button",
   "Checkbox",
   "Counter",
